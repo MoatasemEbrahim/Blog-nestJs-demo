@@ -9,10 +9,10 @@ export function postStorage() {
       try {
         const state = await promises.stat(path_);
         if (!state.isDirectory()) {
-          await promises.mkdir(path_);
+          await promises.mkdir(path_, { recursive: true });
         }
       } catch (error) {
-        await promises.mkdir(path_);
+        await promises.mkdir(path_, { recursive: true });
       } finally {
         cb(null, path_);
       }
