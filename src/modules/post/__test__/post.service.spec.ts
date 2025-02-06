@@ -10,7 +10,7 @@ import { CreatePostDto } from "../dtos/createPost.dto";
 import { LoggingService } from "../../logging/logging.service";
 import { ConsoleLogger } from "../../logging/loggers/console.logger";
 
-let post: Post = {
+const post: Post = {
   id: 1,
   cover: "my-cover.png",
   authorId: 1,
@@ -22,7 +22,7 @@ let post: Post = {
   updatedAt: new Date(),
 };
 
-let getPostInput = (): CreatePostDto => {
+const getPostInput = (): CreatePostDto => {
   return {
     content: "test",
     cover: "my-cover.png",

@@ -41,7 +41,7 @@ export class CategoriesService {
 
   async create(createDto: CreateCategoryDto) {
     try {
-      let input: CategoryCreateInput = {
+      const input: CategoryCreateInput = {
         name: createDto.name,
         slug: createDto.slug,
         //parentId: 1

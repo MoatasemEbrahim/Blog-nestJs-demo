@@ -9,7 +9,7 @@ import {
   CommentWithChilds,
 } from "../../../shared/interfaces/comment.interface";
 
-let post: Post = {
+const post: Post = {
   id: 1,
   cover: "my-cover.png",
   authorId: 1,
@@ -49,7 +49,7 @@ describe("CommentsService", function () {
     expect(commentsService).toBeDefined();
   });
   describe("create()", function () {
-    let commentInput = { postId: 1, text: "Hello", replyId: null };
+    const commentInput = { postId: 1, text: "Hello", replyId: null };
     it("should throw POST_NOT_EXIST,when not found post", async () => {
       jest.spyOn(postRepository, "findById").mockImplementation(() => null);
 

@@ -41,8 +41,10 @@ describe("UsersController E2E", function () {
         .set("Authorization", `Bearer ${fakeJwt}`);
       const data = response.body.data;
       delete testUser.password;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       testUser.updatedAt = testUser.updatedAt.toISOString();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       testUser.createdAt = testUser.createdAt.toISOString();
       expect(data).toEqual(testUser);

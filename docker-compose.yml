@@ -68,5 +68,5 @@ services:
       - test
 
 volumes:
-  mysql-data:
+  db-data:
   uploads:

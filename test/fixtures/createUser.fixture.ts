@@ -7,7 +7,7 @@ export async function createUserFixture(
   prismaService: PrismaService
 ): Promise<User> {
   const pass = await bcrypt.hash("hashedPassword", 10);
-  let username = uuidv4();
+  const username = uuidv4();
   return prismaService.user.create({
     data: {
       username: username,

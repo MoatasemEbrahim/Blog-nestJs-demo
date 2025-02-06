@@ -8,6 +8,7 @@ import path from "path";
 
 @Processor(QueuesConstant.DELETE_FILE)
 export class DeleteFileConsumer {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
   @Process()

@@ -56,7 +56,7 @@ describe("AuthController (e2e)", () => {
     });
 
     it("should response jwt", async function () {
-      let fakeJwt: string = "test.test.test";
+      const fakeJwt = "test.test.test";
       jest.spyOn(jwtService, "sign").mockReturnValue(fakeJwt);
       const response = await request(app.getHttpServer())
         .post("/auth/signup")
@@ -79,7 +79,7 @@ describe("AuthController (e2e)", () => {
       expect(response.statusCode).toBe(401);
     });
     it("should response jwt token", async function () {
-      const fakeJwt: string = "test.test.test";
+      const fakeJwt = "test.test.test";
       jest.spyOn(jwtService, "sign").mockReturnValue(fakeJwt);
 
       const response = await request(app.getHttpServer())

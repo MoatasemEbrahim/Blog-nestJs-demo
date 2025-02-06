@@ -24,10 +24,10 @@ export class CommentsService {
 
   async getAll(query: QueryDto, user: User | null) {
     try {
-      const postId: number = Number(query.postId);
+      const postId = Number(query.postId);
       const page: number = Number(query.page) || 1;
       let limit: number = Number(query.limit) || 10;
-      let dbQuery: any = {};
+      const dbQuery: any = {};
 
       if (limit > 10) limit = 10;
       if (!postId) {

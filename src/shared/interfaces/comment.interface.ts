@@ -1,6 +1,6 @@
 import { Comment as _Comment, Prisma } from "@prisma/client";
 
-export interface Comment extends _Comment {}
+export type Comment = _Comment;
 export interface CommentCreateInput
   extends Omit<Prisma.CommentCreateInput, "author" | "post" | "reply"> {
   replyId: number;

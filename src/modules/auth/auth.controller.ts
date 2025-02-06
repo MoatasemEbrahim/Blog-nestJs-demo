@@ -21,7 +21,7 @@ export class AuthController {
     summary: "signup",
   })
   @Post("signup")
-  async signup(@Body() body: SignUpDto): Promise<Object> {
+  async signup(@Body() body: SignUpDto): Promise<unknown> {
     return await this.authService.signUp(body);
   }
 
@@ -30,7 +30,7 @@ export class AuthController {
   })
   @Post("signing")
   @HttpCode(200)
-  async signing(@Body() body: SignInDto): Promise<Object> {
+  async signing(@Body() body: SignInDto): Promise<unknown> {
     return await this.authService.signIn(body);
   }
 }

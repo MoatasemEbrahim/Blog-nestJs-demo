@@ -33,7 +33,7 @@ export class PostService {
   ) {}
 
   async getPublicPosts(search: searchPostDto) {
-    let query: any = {};
+    const query: any = {};
 
     if (search.title) query.title = { contains: search.title };
     if (search.content) query.content = { contains: search.content };

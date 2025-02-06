@@ -7,7 +7,7 @@ RUN apk add --update --no-cache openssl1.1-compat
 COPY package.json ./
 
 
-
+RUN rm -rf dist
 RUN yarn install
 
 COPY . ./

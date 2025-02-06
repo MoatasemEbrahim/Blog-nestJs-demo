@@ -42,7 +42,7 @@ describe("AuthService", function () {
     it("should throw error user exist", async () => {
       jest
         .spyOn(usersRepository, "findByEmailOrUsername")
-        .mockImplementation(async (email: string, username: string) => [user]);
+        .mockImplementation(async () => [user]);
 
       await expect(authService.signUp(input)).rejects.toEqual(
         new BadRequestException("Email or username already exist")
@@ -52,7 +52,7 @@ describe("AuthService", function () {
     it("should create User & return jwt code", async () => {
       jest
         .spyOn(usersRepository, "findByEmailOrUsername")
-        .mockImplementation(async (email: string, username: string) => []);
+        .mockImplementation(async () => []);
       jest
         .spyOn(usersRepository, "create")
         .mockImplementation(async () => user);
@@ -65,7 +65,7 @@ describe("AuthService", function () {
     it("should add welcome email to queue", async () => {
       jest
         .spyOn(usersRepository, "findByEmailOrUsername")
-        .mockImplementation(async (email: string, username: string) => []);
+        .mockImplementation(async () => []);
       jest
         .spyOn(usersRepository, "create")
         .mockImplementation(async () => user);
@@ -94,9 +94,7 @@ describe("AuthService", function () {
         .mockImplementation(() => Promise.resolve(user));
       jest
         .spyOn(bcrypt, "compare")
-        .mockImplementation(async (pass: string, hash: string) =>
-          Promise.resolve(false)
-        );
+        .mockImplementation(async () => Promise.resolve(false));
       await expect(
         authService.signIn({
           username: input.username,

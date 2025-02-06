@@ -17,7 +17,7 @@ function CheckRoleGuard(roles: Array<RoleType>): any {
     ): boolean | Promise<boolean> | Observable<boolean> {
       const user = context.switchToHttp().getRequest().user as User;
       if (roles.length === 0) return true;
-      const hasRole: Array<Boolean> = roles.map((role) => role == user.role);
+      const hasRole: Array<boolean> = roles.map((role) => role == user.role);
       if (hasRole.includes(true)) return true;
 
       throw new ForbiddenException("PERMISSION_DENIED");

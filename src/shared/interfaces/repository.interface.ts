@@ -1,3 +1,3 @@
 import { Prisma } from "@prisma/client";
 
-export interface BatchPayload extends Prisma.BatchPayload {}
+export type BatchPayload = Prisma.BatchPayload;

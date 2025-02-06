@@ -4,8 +4,8 @@ import { CategoriesRepository } from "./categories.repository";
 import { CategoriesService } from "./categories.service";
 
 @Module({
-    controllers: [CategoriesController],
-    providers: [CategoriesService, CategoriesRepository],
-    exports: [CategoriesRepository]
+  controllers: [CategoriesController],
+  providers: [CategoriesService, CategoriesRepository],
+  exports: [CategoriesRepository],
 })
-export class CategoriesModule { }
+export class CategoriesModule {}
