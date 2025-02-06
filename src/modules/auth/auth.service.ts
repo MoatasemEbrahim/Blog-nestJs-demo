@@ -10,10 +10,6 @@ import * as bcrypt from "bcrypt";
 import { SignUpDto } from "./dtos/signup.dto";
 import { JwtService } from "@nestjs/jwt";
 import { UsersRepository } from "../users/users.repository";
-import { InjectQueue } from "@nestjs/bull";
-import { QueuesConstant } from "../../shared/constants/queues.constant";
-import { Queue } from "bull";
-import { welcomeEmailQueue } from "../../shared/interfaces/queues.interface";
 import { ConfigService } from "@nestjs/config";
 import { Configs } from "../../configuration";
 
@@ -22,8 +18,6 @@ export class AuthService {
   constructor(
     private userRepository: UsersRepository,
     private jwtService: JwtService,
-    @InjectQueue(QueuesConstant.SEND_WELCOME_EMAIL)
-    private queueSendWelcomeEmail: Queue<welcomeEmailQueue>,
     private configService: ConfigService<Configs>
   ) {}
 
@@ -36,7 +30,7 @@ export class AuthService {
       if (usersExist.length > 0)
         throw new BadRequestException("Email or username already exist");
 
-      let newUser = {
+      const newUser = {
         ...userDto,
       };
 
@@ -44,7 +38,6 @@ export class AuthService {
 
       const user = await this.userRepository.create(newUser);
 
-      await this.queueSendWelcomeEmail.add({ user: user });
       return this.jwtSignUserId(user.id);
     } catch (error) {
       throw error;

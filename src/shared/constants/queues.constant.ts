@@ -1,5 +1,4 @@
 export enum QueuesConstant {
-  SEND_WELCOME_EMAIL = "SEND_WELCOME_EMAIL",
   DELETE_FILE = "DELETE_FILE",
   RESIZE_FILE = "RESIZE_FILE",
 }

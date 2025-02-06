@@ -26,7 +26,7 @@ import { Configs } from "./configuration";
   const isDevelopmentMode: boolean =
     configService.get<string>("APP_MODE").toUpperCase() == "DEVELOPMENT";
 
-  const DOCUMENT_ROUTE: string = "/api";
+  const DOCUMENT_ROUTE = "/api";
 
   if (isDevelopmentMode) setupDocument(app, DOCUMENT_ROUTE);
 

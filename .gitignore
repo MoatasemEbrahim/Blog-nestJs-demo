@@ -37,6 +37,6 @@ package-lock.json
 !.vscode/extensions.json
 
 db-data
-my-uploads
+uploads
 .env
 src/schema.gql
