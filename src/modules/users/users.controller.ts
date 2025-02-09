@@ -33,6 +33,16 @@ export class UsersController {
   }
 
   @ApiOperation({
+    summary: "get users",
+  })
+  @ApiTags("All Users")
+  @Get("/")
+  @UseGuards(CheckRoleGuard(["ADMIN"]))
+  getAllUsers(@getUser<User>() user: User) {
+    return this.usersService.getAllUsers(user);
+  }
+
+  @ApiOperation({
     summary: "update user role by UserId",
     description: `Required Permission: 'ADMIN'`,
   })

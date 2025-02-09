@@ -14,6 +14,15 @@ export class UsersService {
     return myUser;
   }
 
+  async getAllUsers(user: User): Promise<User[]> {
+    try {
+      const users = await this.userRepo.find({});
+      return users.filter((it) => it.id !== user.id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async updateRole(userId: number, role: string) {
     try {
       const hasRole: RoleType | null = Role[role];
