@@ -34,8 +34,9 @@ export class UsersController {
 
   @ApiOperation({
     summary: "get users",
+    description: `Required Permission: 'ADMIN'`,
   })
-  @ApiTags("All Users")
+  @ApiTags("Users")
   @Get("/")
   @UseGuards(CheckRoleGuard(["ADMIN"]))
   getAllUsers(@getUser<User>() user: User) {
@@ -46,7 +47,7 @@ export class UsersController {
     summary: "update user role by UserId",
     description: `Required Permission: 'ADMIN'`,
   })
-  @ApiTags("Manage User")
+  @ApiTags("Users")
   @Put("/role/:userId")
   @UseGuards(CheckRoleGuard(["ADMIN"]))
   updateRole(
