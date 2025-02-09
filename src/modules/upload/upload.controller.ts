@@ -23,7 +23,7 @@ import { authGuard } from "../../shared/guards/auth.guard";
 @ApiTags("Upload File")
 @ApiBearerAuth()
 @UseInterceptors(ResponseInterceptor)
-@UseGuards(CheckRoleGuard(["ADMIN"]))
+@UseGuards(CheckRoleGuard(["ADMIN", "MANAGE_POSTS"]))
 @UseGuards(authGuard(false))
 @Controller("uploads")
 export class UploadController {
