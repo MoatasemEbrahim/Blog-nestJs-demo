@@ -31,7 +31,7 @@ export class UploadController {
 
   @ApiOperation({
     summary: "upload a photo for post",
-    description: `Required Permission: 'ADMIN'`,
+    description: `Required Permission: 'ADMIN' or 'MANAGE_POSTS'`,
   })
   @ApiConsumes("multipart/form-data")
   @ApiFile("cover")
