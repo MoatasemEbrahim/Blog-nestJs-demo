@@ -5,7 +5,7 @@ services:
   redis:
     image: redis
     ports:
-    - "6379:6379"
+    - "${REDIS_PORT}:6379"
     expose:
       - 6379
     security_opt:
@@ -25,9 +25,9 @@ services:
     ports:
       - "${PORT}:${PORT}"
     environment:
-      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysqldb:3306/${MYSQL_DATABASE}"
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysqldb:${MYSQL_PORT}/${MYSQL_DATABASE}"
+      REDIS_HOST: "${REDIS_HOST}"
+      REDIS_PORT: "${REDIS_PORT}"
     volumes:
       - ./uploads:/usr/blog/uploads
     profiles:
