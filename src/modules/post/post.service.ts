@@ -37,6 +37,15 @@ export class PostService {
 
     if (search.title) query.title = { contains: search.title };
     if (search.content) query.content = { contains: search.content };
+    if (search.categorySlug) {
+      query.categories = {
+        some: {
+          category: {
+            slug: search.categorySlug,
+          },
+        },
+      };
+    }
 
     const page: number = Number(search.page) || 1;
     let limit: number = Number(search.limit) || 10;

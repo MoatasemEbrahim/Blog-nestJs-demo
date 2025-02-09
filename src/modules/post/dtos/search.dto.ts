@@ -6,6 +6,8 @@ export class searchPostDto {
   title: string;
   @Field({ nullable: true })
   content: string;
+  @Field({ nullable: true })
+  categorySlug: string;
   page: number;
   limit: number;
 }

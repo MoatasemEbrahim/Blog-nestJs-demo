@@ -28,7 +28,7 @@ import { PostService } from "./post.service";
 import { ResponseInterceptor } from "../../shared/interceptors/response.interceptor";
 import { authGuard } from "../../shared/guards/auth.guard";
 import * as process from "process";
-const wit = () => new Promise((res) => setTimeout(res, 3000));
+// const wit = () => new Promise((res) => setTimeout(res, 3000));
 @ApiTags("Post")
 @UseInterceptors(ResponseInterceptor)
 @Controller("posts")
@@ -40,13 +40,14 @@ export class PostController {
   })
   @ApiQuery({ name: "title", required: false })
   @ApiQuery({ name: "content", required: false })
+  @ApiQuery({ name: "categorySlug", required: false })
   @ApiQuery({ name: "page", required: false })
   @ApiQuery({ name: "limit", required: false })
   @Get()
   async getPublicPosts(@Query() query: searchPostDto) {
-    await wit();
-    return `Process Id :${process.pid}`;
-    // return this.postService.getPublicPosts(query);
+    // await wit();
+    // return `Process Id :${process.pid}`;
+    return this.postService.getPublicPosts(query);
   }
 
   @ApiOperation({ summary: "get post by Id" })
