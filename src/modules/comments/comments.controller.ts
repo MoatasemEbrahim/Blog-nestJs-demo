@@ -71,9 +71,10 @@ export class CommentsController {
 
   @ApiOperation({
     summary: "delete comment by commentId",
+    description: "only Admins or comment creator user",
   })
   @ApiBearerAuth()
-  @UseGuards(CheckRoleGuard(["ADMIN", "USER", "MANAGE_COMMENTS"])) //ADMIN OR USER(self comment)
+  // @UseGuards(CheckRoleGuard(["ADMIN", "USER", "MANAGE_COMMENTS"])) //ADMIN OR USER(self comment)
   @UseGuards(authGuard(false))
   @Delete(":id")
   async delete(@Param("id") commentId: string, @getUser() user: User) {
