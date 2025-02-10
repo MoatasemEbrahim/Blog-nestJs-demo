@@ -5,12 +5,19 @@ import { ConfigService } from "@nestjs/config";
 import { DeleteFileConsumer } from "./consumers/delete-file.consumer";
 import { ReSizeFileConsumer } from "./consumers/reSize-file.consumer";
 import { UploadModule } from "../upload/upload.module";
+import { Configs } from "../../configuration";
+
+const configService: ConfigService<Configs> = new ConfigService();
 
 const importsAndExports = [
   BullModule.registerQueue(
-    { name: QueuesConstant.DELETE_FILE },
+    {
+      name: QueuesConstant.DELETE_FILE,
+      prefix: configService.get<string>("QUEUE_PREFIX"),
+    },
     {
       name: QueuesConstant.RESIZE_FILE,
+      prefix: configService.get<string>("QUEUE_PREFIX"),
       defaultJobOptions: {
         priority: 2,
         attempts: 3,

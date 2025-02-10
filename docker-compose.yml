@@ -25,9 +25,12 @@ services:
     ports:
       - "${PORT}:${PORT}"
     environment:
-      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysqldb:${MYSQL_PORT}/${MYSQL_DATABASE}"
+      DATABASE_URL: "${DATABASE_URL}"
       REDIS_HOST: "${REDIS_HOST}"
       REDIS_PORT: "${REDIS_PORT}"
+      QUEUE_PREFIX: "${QUEUE_PREFIX}"
+      JWT_SECRET: "${JWT_SECRET}"
+      APP_MODE: "${APP_MODE}"
     volumes:
       - ./uploads:/usr/blog/uploads
     profiles:

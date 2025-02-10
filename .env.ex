@@ -6,3 +6,4 @@ APP_MODE=development #or production
 DATABASE_URL="mysql://...."
 REDIS_HOST=redis
 REDIS_PORT=6379
+QUEUE_PREFIX=queue1
