@@ -3,6 +3,7 @@ import { User } from "src/shared/interfaces/user.interface";
 import { UsersRepository } from "./users.repository";
 import { getResponseMessage } from "../../shared/constants/messages.constant";
 import { Role, RoleType } from "../../shared/interfaces/role.interface";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,15 @@ export class UsersService {
     try {
       const users = await this.userRepo.find({});
       return users.filter((it) => it.id !== user.id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUsersCount(): Promise<number> {
+    try {
+      const users = await this.userRepo.find({});
+      return users.length;
     } catch (error) {
       throw error;
     }
@@ -40,5 +50,16 @@ export class UsersService {
     } catch (error) {
       throw error;
     }
+  }
+
+
+  async createAdminUser() {
+    const password = await bcrypt.hash('test', 10);
+    return this.userRepo.create({
+      username: 'test',
+      password,
+      email: "fake@gmail.com",
+      role: Role.ADMIN,
+    });
   }
 }

@@ -5,6 +5,7 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { setupDocument } from "./document";
 import { ConfigService } from "@nestjs/config";
 import { Configs } from "./configuration";
+import { UsersService } from "./modules/users/users.service";
 
 (async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -29,6 +30,15 @@ import { Configs } from "./configuration";
   const DOCUMENT_ROUTE = "/api";
 
   if (isDevelopmentMode) setupDocument(app, DOCUMENT_ROUTE);
+
+  const userService = app.get(UsersService);
+  const usersCount = await userService.getUsersCount();
+  if (usersCount === 0) {
+    await userService.createAdminUser();
+    console.log('Admin user created.');
+  } else {
+    console.log('User table not empty. Skipping admin seeding.');
+  }
 
   await app.listen(port);
 
